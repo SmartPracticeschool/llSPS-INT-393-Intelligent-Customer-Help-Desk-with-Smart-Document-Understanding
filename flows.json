@@ -1,0 +1,175 @@
+[
+    {
+        "id": "34dc0e25.e32532",
+        "type": "tab",
+        "label": "SMARTY",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8e10e5a3.001398",
+        "type": "ui_form",
+        "z": "34dc0e25.e32532",
+        "name": "",
+        "label": "",
+        "group": "3f5c17bc.e16d88",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "options": [
+            {
+                "label": "Enter Your Query",
+                "value": "input",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "input": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 140,
+        "y": 380,
+        "wires": [
+            [
+                "4f96d4b7.a7ab6c"
+            ]
+        ]
+    },
+    {
+        "id": "4f96d4b7.a7ab6c",
+        "type": "function",
+        "z": "34dc0e25.e32532",
+        "name": "",
+        "func": "msg.payload = msg.payload.input;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 280,
+        "wires": [
+            [
+                "ad26ce0c.4af",
+                "b7f79ea.964f66"
+            ]
+        ]
+    },
+    {
+        "id": "b7f79ea.964f66",
+        "type": "watson-conversation-v1",
+        "z": "34dc0e25.e32532",
+        "name": "Assistant",
+        "workspaceid": "6051e64d-0b90-4b68-bab5-7455df5df9a9",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "service-endpoint": "https://api.eu-gb.assistant.watson.cloud.ibm.com/instances/36e0918f-9ea7-4aad-a370-2896dad3b01b",
+        "timeout": "",
+        "optout-learning": false,
+        "x": 480,
+        "y": 140,
+        "wires": [
+            [
+                "3d05e07b.64376",
+                "654b6049.d718a"
+            ]
+        ]
+    },
+    {
+        "id": "ad26ce0c.4af",
+        "type": "ui_text",
+        "z": "34dc0e25.e32532",
+        "group": "3f5c17bc.e16d88",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "user:",
+        "format": "{{msg.payload}}",
+        "layout": "row-right",
+        "x": 470,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "654b6049.d718a",
+        "type": "function",
+        "z": "34dc0e25.e32532",
+        "name": "",
+        "func": "msg.payload.text=\"\";\nif(msg.payload.context.webhook_result_1){\n    for(var i in msg.payload.context.webhook_result_1.results){\n    msg.payload.text=msg.payload.text+\"\\n\"+msg.payload.context.webhook_result_1.results[i].text;\n}\n    msg.payload=msg.payload.text;\n}\n\nelse\nmsg.payload = msg.payload.output.text[0];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 260,
+        "wires": [
+            [
+                "e8718d9b.1fa79"
+            ]
+        ]
+    },
+    {
+        "id": "3d05e07b.64376",
+        "type": "debug",
+        "z": "34dc0e25.e32532",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 810,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e8718d9b.1fa79",
+        "type": "ui_text",
+        "z": "34dc0e25.e32532",
+        "group": "7b87eccd.46b444",
+        "order": 0,
+        "width": "17",
+        "height": "12",
+        "name": "",
+        "label": "SMART WATSON ",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 890,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "3f5c17bc.e16d88",
+        "type": "ui_group",
+        "z": "",
+        "name": "USER - INPUT",
+        "tab": "a2dad086.41874",
+        "order": 1,
+        "disp": true,
+        "width": "7",
+        "collapse": false
+    },
+    {
+        "id": "7b87eccd.46b444",
+        "type": "ui_group",
+        "z": "",
+        "name": "WATBOT",
+        "tab": "a2dad086.41874",
+        "order": 3,
+        "disp": true,
+        "width": "17",
+        "collapse": false
+    },
+    {
+        "id": "a2dad086.41874",
+        "type": "ui_tab",
+        "z": "",
+        "name": "SMARTY",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
