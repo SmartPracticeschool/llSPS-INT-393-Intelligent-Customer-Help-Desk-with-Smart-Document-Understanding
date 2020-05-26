@@ -10,4 +10,4 @@ Review :
 
 Link to the Node-Red Dashboard - https://noderedbotapp.eu-gb.mybluemix.net/ui/#!/0?socketid=Bf3H8nxVJhTueZT5AAAL
 
-Link to youtube video : https://youtu.be/RaBN0TLWozo
+Link to youtube video : https://www.youtube.com/watch?v=RaBN0TLWozo
