@@ -9,3 +9,5 @@ And then using Node-Red Dashboard we will communicate to this Chatbot.
 Review : 
 
 Link to the Node-Red Dashboard - https://noderedbotapp.eu-gb.mybluemix.net/ui/#!/0?socketid=Bf3H8nxVJhTueZT5AAAL
+
+Link to youtube video : https://youtu.be/RaBN0TLWozo
